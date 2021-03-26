@@ -257,10 +257,13 @@ def FimDoJogo():
         console.print('Você venceu o torneio.')
     if Personagem.Vitória == False:
         console.print('Você não venceu o torneio.')
-    Restart = input('Obrigado por Jogar, digite 1 e aperte enter para jogar novamente ou 2 para fechar o programa.')
-    if Restart == 1:
+    print('')
+    console.print('Obrigado por Jogar, digite 1 e aperte enter para jogar novamente ou 2 para fechar o programa.')
+    Restart = input()
+
+    if Restart == '1':
         Game()
-    if Restart == 2:    
+    elif Restart == '2':    
         raise SystemExit()
     else:
         while True:
