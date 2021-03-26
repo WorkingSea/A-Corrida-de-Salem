@@ -316,6 +316,8 @@ def corrida():
 
     ProtagonistaVelocidade += dado(100) + Personagem.Bônus + Volta() 
     InimigoVelocidade += dado(100) + Rival.Bônus
+    if Personagem.Vitória == False:
+        return None
 
     if ProtagonistaVelocidade > InimigoVelocidade:
         Personagem.Vitória = True
