@@ -214,9 +214,9 @@ def rebelião():
         console.print('A população irada invade o campo e pula encima de ' + Rival.Nome + ', linchando-o vivo em uma cena horrorosa e brutal, em meio a confusão alguns de seus camaradas ' + Personagem.Ordem + ' invadem o campo e ajudam a te proteger, lhe guiando para fora do hipódromo e de volta para a base da ordem.')
         console.print('O Grão-Mestre organiza os membros da ordem.')
 
-        GuerraCivil = dados(2)
+        GuerraCivil = dado(2)
         if GuerraCivil == 1:
-            Personagem.Popularidade -= dados(100)
+            Personagem.Popularidade -= dado(100)
             if Personagem.Ordem == "Cavaleiros do Sol Nascente":    
                 console.print('Grão-Mestre: É nosso dever manter a ordem na cidade durante as manhãs, e hoje não é diferente. A cidade está em chamas, o que era para ser um evento esportivo se tornou um mar de sangue. É hora de nos organizamos e pormos um fim a essa rebelião e restaurar ordem a Salém. Por Lisandros, por Salém, pelo Único!')
                 console.print('Você, junto dos demais cavaleiros equipam suas armas e montam em seus cavalos, e partem para conter a rebelião, o dia é longo e difícil: Muitos daqueles que gritaram seu nome estavam entre os rebeldes e muitos deles mortos por sua própria espada. Mais tarde, membros de outras ordens se unem para ajudar a conter a rebelião, incluindo Cavaleiros da Noite, a Liga Dourada e até mesmo os Escudeiros da Fenix, que normalmente só lutavam em guerras e ignoravam os acontecimentos da cidade.') 
@@ -257,8 +257,14 @@ def FimDoJogo():
         console.print('Você venceu o torneio.')
     if Personagem.Vitória == False:
         console.print('Você não venceu o torneio.')
-    input('Obrigado por Jogar, aperte enter para fechar o programa')
-    raise SystemExit()  
+    Restart = input('Obrigado por Jogar, digite 1 e aperte enter para jogar novamente ou 2 para fechar o programa.')
+    if Restart == 1:
+        Game()
+    if Restart == 2:    
+        raise SystemExit()
+    else:
+        while True:
+            print('VAMOS TODOS AMAR LAIN')      
 
 def dado(lados):
     return random.randint(1, lados)
@@ -313,313 +319,313 @@ def corrida():
     elif InimigoVelocidade > ProtagonistaVelocidade:
         Personagem.Vitória = False    
 
-Personagem.AmigoDoRei = False
-Personagem.Popularidade = 25
-Personagem.Bônus = 0
-Personagem.Vitória = ''
-Personagem.Traidor = False
-Personagem.Vivo = True
+def Game():
+    Personagem.AmigoDoRei = False
+    Personagem.Popularidade = 25
+    Personagem.Bônus = 0
+    Personagem.Vitória = ''
+    Personagem.Traidor = False
+    Personagem.Vivo = True
 
-Rival.Bônus = dado(50)
+    Rival.Bônus = dado(50)
 
-console.print(
-    "Esse é um jogo baseado em texto, em certos momentos, você será dado "
-"diversas opções pelo qual escolher sua ação, por exemplo:")
-console.print("1.Beber água")
-console.print("2.Beber refrigerante ")
-console.print("3.Beber suco"
-)
-console.print("Em uma situação como essa, você escolhe a sua ação simplesmente digitando o número, por exemplo, caso queira beber água você simplesmente digita 1 e aperta enter"
-)
-
-console.print("Quando estiver pronto para jogar, aperte enter")
-input()
-print('''\
-                                      .o.                                                                             
-                                     .888.                                                                                           
-                                    .8"888.                                                                           
-                                   .8' `888.                                            
-                                  .88ooo8888.   
-                                 .8'     `888.                                       
-                                o88o     o8888o 
-                                                                                         
-                                                
-                                                                                                     
-        .oooooo.                                o8o        .o8                                      
-       d8P'  `Y8b                               `"'       "888                            
-      888           .ooooo.  oooo d8b oooo d8b oooo   .oooo888   .oooo.                                         
-      888          d88' `88b `888""8P `888""8P `888  d88' `888  `P  )88b  
-      888          888   888  888      888      888  888   888   .oP"888                   
-      `88b    ooo  888   888  888      888      888  888   888  d8(  888                  
-       `Y8bood8P'  `Y8bod8P' d888b    d888b    o888o `Y8bod88P" `Y888""8o              
-                                                                                        
-                                                                          
-                                                                                          
-                                   .o8                                                                              
-                                  "888                                         
-                              .oooo888   .ooooo.                  
-                             d88' `888  d88' `88b                              
-                             888   888  888ooo888                 
-                             888   888  888    .o              
-                             `Y8bod88P" `Y8bod8P'                                  
-                                                  
-                                                  
-                                                  
-             .oooooo..o           oooo                              
-            d8P'    `Y8           `888                              
-            Y88bo.       .oooo.    888   .ooooo.  ooo. .oo.  .oo.   
-             `"Y8888o.  `P  )88b   888  d88' `88b `888P"Y88bP"Y88b  
-                 `"Y88b  .oP"888   888  888ooo888  888   888   888  
-            oo     .d8P d8(  888   888  888    .o  888   888   888  
-            8""88888P'  `Y888""8o o888o `Y8bod8P' o888o o888o o888o 
-                      ''')
-
-print('''\
-
-                                                                   
-  Yb,     ________            
-   Y8baadP""""""""Yba,_      
-aaadP"'             `""Yb,   
-`Y8(                    `"Yb,
-  `Y,                      `Yba,
-    Y,  (O)                   `Yba,
-    `Y,                          ""Yba,________,,aaddddbbbaa,,____,aa,_
-     `Y,       ,aa                   `""""""""""''          ``""""''  "Y,
-       Y,      d'8                                                "Ya   `Y,
-       `b      8 8                                                  `Y,   Y,
-        Ya o  ,8 8                                                    b   `b
-         Yb,_,dP 8                                                    Y    8
-          `""""  Y                                                    8    8
-                 I,                                                   8    8
-                 `b                                                   P    [
-                  `b                                                 d'    [
-                   d                                                ,P     [
-                 ,d'    ,PY,         ,P"YaaaaaaP"Ybaaa,,_           d'     [
-                d"    ,P"  Y,        d'           8'  `""db,       d'      8
-               d'   ,P"    `Y,       8            I,     d'"b,     8a      P
-              d(    (       `Y,      P            `b    ,P  `Y,    8`Ya___d'
-              "Y,   "b,      `Y,    ,I             8    d'   `8    8  `"""'
-                "Y,   "b,  __ `8,   d'            ,8   ,P     8    8
-                  "Y,   "bd88b `b   8             I'   d'     Y,   8
-                    "Y,    888b 8   8             8   ,P      `b   8
-                      "Ya,,d888b8   P            d'  ,P'       8   Y,
-                         `"""",d"  ,I        ,adPb__aP'        Y   `b
-                           ,a8P,__aP'       d888888P'         ,d    8
-                          d8888888'         88888888       ,d888bbaaP
-                          88888888                         88888888'
-
-                                ASCII by Normand Veilleux
-                          ''')
-print("O ano é 25 AGC, os Estados Cruzados (ou Reino de Salém, como é chamado por seus nativos) é governado por Jefferson de Nika, que herdou o reino de seu infértil tio. ")
-console.print("Jefferson se encontra em uma situação difícil, a guerra contra os pagãos de Eletria começou com sucesso, mas recentemente\
-o exército de Salém havia sido massacrado na Batalha do Rio Negro, \
-causando um grande dano a popularidade de Jefferson e até mesmo fazendo com que suporte ao Conde Henrique") 
-console.print("Henrique, diferente de Jefferson, não teve a reputação manchada \
-por perder alguma batalha e é bem jovem ainda, é conhecido por sua devoção religiosa ao Único e havia aconselhado o Rei a recuar ao invés de lutar a Batalha do Rio Negro")
-console.print('Para distrair a população e evitar rebelião, o Rei Jefferson decide distrair a população com uma grande corrida de bigas.')
-console.print("Para participar na corrida, Jefferson convoca os Cavaleiros da Noite e os Cavaleiros do Sol Nascente")
-console.print("Ambas as ordens aceitam imediatamente a ordem e começam a se preparar para a corrida, que para elas representa algo muito maior: ")
-console.print("Ambas as ordens tem um grande sentimento de rivalidade, \
-os Cavaleiros do Sol Nascente normalmente patrulham a cidade de dia e os Cavaleiros da Noite, bem, a noite.")
-console.print("O resultado é que, quando problemas ocorrem, ambas passam a culpar uma a outra por não terem cumprido bem o seu papel afirmando que a origem do \
-problema é a negligência da outra, essas disputas já resultaram em batalhas em tavernas, e a população, \
-sempre mesmerizada com os fantásticos cavaleiros, começa a tomar lados também, de forma que o conflito é, \
-não só uma questão de prestigio, mas também de popularidade para ambas as ordens, \
-que agora tem uma válvula de escape para a sua rivalidade em forma de corrida.")
-console.print("")
-console.print("Qual é o seu nome?")
-Personagem.Nome = input()
-if Personagem.Nome == '':
-    Personagem.Nome = 'Pedro de Alcântara João Carlos Leopoldo Salvador Bibiano Francisco Xavier de Paula Leocádio Miguel Gabriel Rafael Gonzaga de Bragança e Bourbon'
-console.print("Certo " + Personagem.Nome + ", de qual ordem você pertence?")
-console.print("1. Cavaleiros da Noite")
-console.print("2. Cavaleiros do Sol Nascente")
-firstchoice = input()
-if firstchoice == "1":
-    Personagem.Ordem = "Cavaleiros da Noite"
-elif firstchoice == "2":
-    Personagem.Ordem = "Cavaleiros do Sol Nascente" 
-elif firstchoice == '3':
-    console.print('Vamos todos amar Lain')
-    Personagem.Ordem = "Cavaleiros do Calculo Oriental"
-    Rival.Ordem = 'Winged Hussars'
-
-console.print("")    
-console.print(
-  "Como membro dos "
-  + Personagem.Ordem
-  + ", você passa a boa parte do seu tempo patrulhando os subúrbios de Salem a procura de encrenqueiros e ladrões\
-ou escoltando os arredores em seu cavalo a procura de coisas suspeitas.") 
-
-console.print("Quando não se há nada de interessante, para passar o tempo, \
-você costuma competir em corridas com seus irmãos em armas e após ganhar grande parte delas,\
-você passa a ganhar uma fama dentro na Ordem como um dos mais rápidos cavaleiros\
-, por isso, não é com surpresa que logo após a corrida ser anunciada você foi escolhido para representar os " + Personagem.Ordem + '.')
-
-if Personagem.Ordem == "Cavaleiros da Noite":
     console.print(
-        "Algumas semanas antes da competição, Jefferson revelou bêbado em um jantar\
- que está torcendo para os Cavaleiros da Noite, com o suporte dele sua popularidade cresce mais do que nunca"
+        "Esse é um jogo baseado em texto, em certos momentos, você será dado "
+    "diversas opções pelo qual escolher sua ação, por exemplo:")
+    console.print("1.Beber água")
+    console.print("2.Beber refrigerante ")
+    console.print("3.Beber suco"
     )
-    Rival.Ordem = "Cavaleiros do Sol Nascente"
-    Rival.Nome = 'Julius'
-else:
+    console.print("Em uma situação como essa, você escolhe a sua ação simplesmente digitando o número, por exemplo, caso queira beber água você simplesmente digita 1 e aperta enter"
+    )
+
+    console.print("Quando estiver pronto para jogar, aperte enter")
+    input()
+    print('''\
+                                          .o.                                                                             
+                                         .888.                                                                                           
+                                        .8"888.                                                                           
+                                       .8' `888.                                            
+                                      .88ooo8888.   
+                                     .8'     `888.                                       
+                                    o88o     o8888o 
+                                                                                             
+                                                    
+                                                                                                         
+            .oooooo.                                o8o        .o8                                      
+           d8P'  `Y8b                               `"'       "888                            
+          888           .ooooo.  oooo d8b oooo d8b oooo   .oooo888   .oooo.                                         
+          888          d88' `88b `888""8P `888""8P `888  d88' `888  `P  )88b  
+          888          888   888  888      888      888  888   888   .oP"888                   
+          `88b    ooo  888   888  888      888      888  888   888  d8(  888                  
+           `Y8bood8P'  `Y8bod8P' d888b    d888b    o888o `Y8bod88P" `Y888""8o              
+                                                                                            
+                                                                              
+                                                                                              
+                                       .o8                                                                              
+                                      "888                                         
+                                  .oooo888   .ooooo.                  
+                                 d88' `888  d88' `88b                              
+                                 888   888  888ooo888                 
+                                 888   888  888    .o              
+                                 `Y8bod88P" `Y8bod8P'                                  
+                                                      
+                                                      
+                                                      
+                 .oooooo..o           oooo                              
+                d8P'    `Y8           `888                              
+                Y88bo.       .oooo.    888   .ooooo.  ooo. .oo.  .oo.   
+                 `"Y8888o.  `P  )88b   888  d88' `88b `888P"Y88bP"Y88b  
+                     `"Y88b  .oP"888   888  888ooo888  888   888   888  
+                oo     .d8P d8(  888   888  888    .o  888   888   888  
+                8""88888P'  `Y888""8o o888o `Y8bod8P' o888o o888o o888o 
+                          ''')
+
+    print('''\
+
+                                                                       
+      Yb,     ________            
+       Y8baadP""""""""Yba,_      
+    aaadP"'             `""Yb,   
+    `Y8(                    `"Yb,
+      `Y,                      `Yba,
+        Y,  (O)                   `Yba,
+        `Y,                          ""Yba,________,,aaddddbbbaa,,____,aa,_
+         `Y,       ,aa                   `""""""""""''          ``""""''  "Y,
+           Y,      d'8                                                "Ya   `Y,
+           `b      8 8                                                  `Y,   Y,
+            Ya o  ,8 8                                                    b   `b
+             Yb,_,dP 8                                                    Y    8
+              `""""  Y                                                    8    8
+                     I,                                                   8    8
+                     `b                                                   P    [
+                      `b                                                 d'    [
+                       d                                                ,P     [
+                     ,d'    ,PY,         ,P"YaaaaaaP"Ybaaa,,_           d'     [
+                    d"    ,P"  Y,        d'           8'  `""db,       d'      8
+                   d'   ,P"    `Y,       8            I,     d'"b,     8a      P
+                  d(    (       `Y,      P            `b    ,P  `Y,    8`Ya___d'
+                  "Y,   "b,      `Y,    ,I             8    d'   `8    8  `"""'
+                    "Y,   "b,  __ `8,   d'            ,8   ,P     8    8
+                      "Y,   "bd88b `b   8             I'   d'     Y,   8
+                        "Y,    888b 8   8             8   ,P      `b   8
+                          "Ya,,d888b8   P            d'  ,P'       8   Y,
+                             `"""",d"  ,I        ,adPb__aP'        Y   `b
+                               ,a8P,__aP'       d888888P'         ,d    8
+                              d8888888'         88888888       ,d888bbaaP
+                              88888888                         88888888'
+
+                                    ASCII by Normand Veilleux
+                              ''')
+    print("O ano é 25 AGC, os Estados Cruzados (ou Reino de Salém, como é chamado por seus nativos) é governado por Jefferson de Nika, que herdou o reino de seu infértil tio. ")
+    console.print("Jefferson se encontra em uma situação difícil, a guerra contra os pagãos de Eletria começou com sucesso, mas recentemente\
+    o exército de Salém havia sido massacrado na Batalha do Rio Negro, \
+    causando um grande dano a popularidade de Jefferson e até mesmo fazendo com que suporte ao Conde Henrique") 
+    console.print("Henrique, diferente de Jefferson, não teve a reputação manchada \
+    por perder alguma batalha e é bem jovem ainda, é conhecido por sua devoção religiosa ao Único e havia aconselhado o Rei a recuar ao invés de lutar a Batalha do Rio Negro")
+    console.print('Para distrair a população e evitar rebelião, o Rei Jefferson decide distrair a população com uma grande corrida de bigas.')
+    console.print("Para participar na corrida, Jefferson convoca os Cavaleiros da Noite e os Cavaleiros do Sol Nascente")
+    console.print("Ambas as ordens aceitam imediatamente a ordem e começam a se preparar para a corrida, que para elas representa algo muito maior: ")
+    console.print("Ambas as ordens tem um grande sentimento de rivalidade, \
+    os Cavaleiros do Sol Nascente normalmente patrulham a cidade de dia e os Cavaleiros da Noite, bem, a noite.")
+    console.print("O resultado é que, quando problemas ocorrem, ambas passam a culpar uma a outra por não terem cumprido bem o seu papel afirmando que a origem do \
+    problema é a negligência da outra, essas disputas já resultaram em batalhas em tavernas, e a população, \
+    sempre mesmerizada com os fantásticos cavaleiros, começa a tomar lados também, de forma que o conflito é, \
+    não só uma questão de prestigio, mas também de popularidade para ambas as ordens, \
+    que agora tem uma válvula de escape para a sua rivalidade em forma de corrida.")
+    console.print("")
+    console.print("Qual é o seu nome?")
+    Personagem.Nome = input()
+    if Personagem.Nome == '':
+        Personagem.Nome = 'Pedro de Alcântara João Carlos Leopoldo Salvador Bibiano Francisco Xavier de Paula Leocádio Miguel Gabriel Rafael Gonzaga de Bragança e Bourbon'
+    console.print("Certo " + Personagem.Nome + ", de qual ordem você pertence?")
+    console.print("1. Cavaleiros da Noite")
+    console.print("2. Cavaleiros do Sol Nascente")
+    firstchoice = input()
+    if firstchoice == "1":
+        Personagem.Ordem = "Cavaleiros da Noite"
+    elif firstchoice == "2":
+        Personagem.Ordem = "Cavaleiros do Sol Nascente" 
+    elif firstchoice == '3':
+        console.print('Vamos todos amar Lain')
+        Personagem.Ordem = "Cavaleiros do Calculo Oriental"
+        Rival.Ordem = 'Winged Hussars'
+
+    console.print("")    
     console.print(
-        "Algumas semanas antes da competição, o traidor do Rei disse que está torcendo para os Cavaleiros da Noite,\
- será que o idiota não percebe que sem nós a cidade estaria em caos?")
-    console.print("O Grão-Mestre está furioso, e proíbe que os membros da Ordem participem de festas com o Rei ou digam coisas positivas a seu respeito em uma especie de boicote.")
-    Personagem.Popularidade += 25
-    Rival.Ordem = "Cavaleiros da Noite"
-    Rival.Nome = 'Bomani'
+      "Como membro dos "
+      + Personagem.Ordem
+      + ", você passa a boa parte do seu tempo patrulhando os subúrbios de Salem a procura de encrenqueiros e ladrões\
+    ou escoltando os arredores em seu cavalo a procura de coisas suspeitas.") 
 
-if Personagem.Ordem == "Cavaleiros da Noite":
-    print('Falta 1 mês até o torneio, como você passa a maior parte do seu tempo?')
-    console.print('1. Participando de jantares e festas com o Rei')
-    console.print('2. Aproveitando da popularidade para festejar na cidade com outros membros da Ordem sem ter de gastar um único denário')
-    console.print('3. Treinando para o torneio')
-    PrimeiraEscolha = input()
-    if PrimeiraEscolha == '1':
-        console.print('Durantes as festas, qual é sua prioridade?')
-        console.print('1. Tentar fazer o Rei ficar bêbado de novo')
-        console.print('2. Se divertir.')
-        OutraEscolha = input()
-        if OutraEscolha == "1":
-            def ReiBebado(rolagem):
-                if rolagem <50:
-                    console.print('Após beber um pouco ele decide parar para evitar que passe mal')
-                elif rolagem >=50 and rolagem<75:
-                    console.print('O Rei fica bêbado o suficiente para que com lábia você seja capaz de convence-lo a lhe emprestar os cavalos mais rápidos do estabulo real para o torneio')
-                    Personagem.Bônus += random.randint(1, 100)
-                else:
-                    console.print('O rei tem o tempo da vida dele com você, após beberem, conversarem e cantarem juntos você pode dizer que é praticamente amigo do rei')
-                    Personagem.AmigoDoRei = True
-            ReiBebado(dado(100))        
-        elif OutraEscolha == "2":
-            def Amigo_Do_Rei(Diversão):
-                if Diversão <=50:
-                    console.print('O Rei fica satisfeito com sua presença e apreciação da festa, ambos definitivamente se tornam mais próximos')
-                    Personagem.AmigoDoRei = True
-                else:
-                    console.print('Você se diverte como nunca antes e está satisfeito com sua escolha, nunca que uma taverna da cidade poderia lhe causar tanta diversão quanto a estupidez do bobo-da-corte ou o vinho exportado diretamente de Iolia, isso para não falar da deliciosa comida...')  
-            Amigo_Do_Rei(dado(100) + 25) 
-        elif OutraEscolha == '3':
-            console.print('_Senhor Rei, o homem invisível está lhe esperando para atendê-lo') 
-            console.print('_Diga que não posso vê-lo agora')   
-    elif PrimeiraEscolha == '2':
-        console.print("O anuncio do torneio e os rumores de que o Rei pessoalmente está torcendo para os Cavaleiros da Noite aumentaram a sua popularidade e você agora não só é reconhecido na cidade, como alguns burgueses passam a oferecer refeições gratuitas para você em algumas tavernas na esperança de atrair mais clientes interessados em estar perto de um dos competidores")
-        console.print("Você:")
-        console.print('1. Festejar longe dos camponeses, eles fedem.')
-        console.print('2. Se une aos plebeus para festejar')
-        OutraEscolha = input()
-        if OutraEscolha == '1':
-            console.print('Você se diverte bastante com seus companheiros e passam boa parte do tempo se lembrando de antigas batalhas e problemas da cidade.')
-            Personagem.Popularidade += dado(10)
-        elif OutraEscolha == '2':
-            console.print('Você decide festejar dentre os mais-humildes e conta diversas histórias a eles, que se impressionam bastante e um bardo até mesmo decide improvisar em seu alaúde um pequeno Hino à ' + Personagem.Nome + '.')
-            Personagem.Popularidade += 25
-        elif OutraEscolha == '3':
-            console.print('Eu odeio bermudas, shorts e calças sem bolso, imagina se estou caminhando pela vilarinho, acho um diamante no chão mas tenho que deixar ela lá porque não tenho aonde por.')   
-    elif PrimeiraEscolha == '3':
-        console.print('Você decide treinar com os cavalos para o torneio em um planalto próximo a cidade.')
-        Personagem.Bônus += 50
-    elif PrimeiraEscolha == '4':
-        console.print('THEN THE WINGED HUSSARS ARRIVED')
-        console.print('COMING DOWN THEY TURNED THE TIDE')
-    Rival.Ordem = 'Cavaleiros do Sol Nascente'    
+    console.print("Quando não se há nada de interessante, para passar o tempo, \
+    você costuma competir em corridas com seus irmãos em armas e após ganhar grande parte delas,\
+    você passa a ganhar uma fama dentro na Ordem como um dos mais rápidos cavaleiros\
+    , por isso, não é com surpresa que logo após a corrida ser anunciada você foi escolhido para representar os " + Personagem.Ordem + '.')
 
-if Personagem.Ordem == "Cavaleiros do Sol Nascente":
-    console.print('Falta 1 mês até o torneio, como você passa a maior parte do seu tempo?')
-    console.print('1. Festejando com os nobres')
-    console.print('2. Aproveitando da popularidade para festejar na cidade com outros membros da Ordem sem ter de gastar um único denário')
-    console.print('3. Treinando para o torneio')
-    PrimeiraEscolha = input()
-    if PrimeiraEscolha == '1':
-        console.print('Ofendidos com o Rei dar suporte público aos Larápios da Noite na competição, sua ordem obviamente recusa os convites do rei para festas, mas isso não quer dizer que você não pode festejar com outros membros da nobreza')
-        console.print('A maioria das festas são hospedadas pelo Barão Jacques de Molai em seu forte próximo a Salém, antes do jantar, você é convidado para sentar na mesa principal, aonde o Barão  levanta um copo em honra a ' + Personagem.Nome + ', ao Único ao seu falecido pai, Hugues de Molai, perguntando em seguida se esqueceu de alguém.')
-        console.print('1. "Você esqueceu do Rei Jefferson, vida longa ao Rei!"')
-        console.print('2. "Você esqueceu do Rei Henrique, vida longa ao Rei!"')
-        console.print('3. "Você não se esqueceu de ninguém."')
-        console.print('4. Ficar calado.')
-        resposta=input()
-        if resposta == '1':
-            console.print('Barão Jacques de Molai: "Mas é claro, vida longa ao Rei Jefferson!"')
-        elif resposta == '2':
-            console.print('Barão Jacques de Molai: "Mas é claro, vida longa ao Conde Henrique!"')
-            console.print('Após o jantar e enquanto você se preparava para ir embora, o Barão se aproxima e lhe chama para uma conversa em particular.')
-            console.print('Barão Jacques de Molai: "Você faz parte da facção que deseja Henrique como Rei?')
-            console.print("1. Mas é claro, Jeffeson é um bêbado incompetente que só trás desgraça a Salem.")
-            console.print("2. Não, eu simplesmente me confundi na mesa.")
-            VidaLongaAoRei = input ()
-            if VidaLongaAoRei == '1':
-                Personagem.Traidor = True
-                console.print('Barão Jacques de Molai: "Entendo... Bem, nós temos um plano: A sua Ordém é mais popular com  a plebe do que os Cavaleiros da Noite já que patrulham de dia e a maioria das pessoas dormem a noite, faremos caridade em seu nome, isso irá fazer com que você seja ainda mais popular do que ' + Rival.Nome + ' dos ' + Rival.Ordem + '.')
-                console.print('Barão Jacques de Molai: Então tudo que você precisa fazer é perder de propósito, a população ficará irada enquanto nossos agentes irão espalhar que houve trapaça, uma rebelião ocorrerá e com ela Henrique terá a oportunidade de tomar o trono."')
-                console.print(Personagem.Nome + ': Certo.')
-                Personagem.Popularidade += dado(100)
-            elif VidaLongaAoRei == '2':
-                console.print('Barão Jacques de Molai: "Guardas, este homem é um traidor ao Rei, prendam-o"')
-                console.print('Os guardas que estavam vigiando a fortaleza rapidamente lhe cercam e te forçam a se render, e a despeito de seus protestos, te levam até a masmorra. Uma semana depois você é queimado vivo pelo crime de Lesa Majestade e substituído por outro membro para a competição')
-                Personagem.Vivo = False
-                Personagem.Vitória = False
-                FimDoJogo() 
-        elif resposta == '3':
-            console.print('Barão Jacques de Molai: "Iniciemos o jantar então"')  
-        elif resposta == '4':
-            console.print('Após alguns segundos de silêncio o Barão declara o inicio do jantar')
-        elif resposta == '5':
-            console.print('Eu sei que ninguém vai ler isto, mas quando estou sozinho vou para o quintal, me enterro e finjo que sou uma cenoura.')             
-    elif PrimeiraEscolha == "2":
-        console.print("O anuncio do torneio e os rumores de que o Rei pessoalmente está torcendo para os Cavaleiros da Noite aumentaram a sua popularidade dentre aqueles que não gostam dele e você agora não só é \
-        reconhecido na cidade, como alguns burguese passam a oferecer refeições gratuitas para você em algumas tavernas na esperança de atrair mais clientes interessados \
-        em estar perto de um dos competidores")
-        console.print("Você:")
-        console.print('1. Festejar longe dos camponeses, eles fedem.')
-        console.print('2. Se une aos plebeus para festejar')
-        OutraEscolha = input()
-        if OutraEscolha == '1':
-            console.print('Você se diverte bastante com seus companheiros e passam boa parte do tempo se lembrando de antigas batalhas e problemas da cidade.')
-            Personagem.Popularidade += dado(10)
-        elif OutraEscolha == '2':
-            console.print('Você decide festejar dentre os mais-humildes e conta diversas histórias a eles, que se impressionam bastante e um bardo até mesmo decide improvisar em seu alaúde um pequeno Hino à ' + Personagem.Nome + '.')
-            Personagem.Popularidade += 25
-        elif OutraEscolha == '3':
-            console.print('Eu odeio bermudas, shorts e calças sem bolso, imagina se estou caminhando pela vilarinho, acho um diamante no chão mas tenho que deixar ela lá porque não tenho aonde por.')   
-    elif PrimeiraEscolha == '3':
-        console.print('Você decide treinar com os cavalos para o torneio em um planalto próximo a cidade.')
-        Personagem.Bônus += 50
-    elif PrimeiraEscolha == '4':
-        console.print('THEN THE WINGED HUSSARS ARRIVED')
-        console.print('COMING DOWN THEY TURNED THE TIDE')
+    if Personagem.Ordem == "Cavaleiros da Noite":
+        console.print(
+            "Algumas semanas antes da competição, Jefferson revelou bêbado em um jantar\
+     que está torcendo para os Cavaleiros da Noite, com o suporte dele sua popularidade cresce mais do que nunca"
+        )
+        Rival.Ordem = "Cavaleiros do Sol Nascente"
+        Rival.Nome = 'Julius'
+    else:
+        console.print(
+            "Algumas semanas antes da competição, o traidor do Rei disse que está torcendo para os Cavaleiros da Noite,\
+     será que o idiota não percebe que sem nós a cidade estaria em caos?")
+        console.print("O Grão-Mestre está furioso, e proíbe que os membros da Ordem participem de festas com o Rei ou digam coisas positivas a seu respeito em uma especie de boicote.")
+        Personagem.Popularidade += 25
+        Rival.Ordem = "Cavaleiros da Noite"
+        Rival.Nome = 'Bomani'
 
-console.print('')
-console.print('Finalmente chega o dia da Grande Corrida, o hipódromo está lotado com dezenas de milhares de pessoas.')
-if Personagem.Popularidade >= 50:
-    console.print('A maioria delas parece estar gritando ' + Personagem.Nome + ', o que ajuda a levantar seu ânimo.')
-else:
-    console.print('A maioria delas parece estar gritando ' + Rival.Nome + ', o que parece enche-lo de arrogância.') 
+    if Personagem.Ordem == "Cavaleiros da Noite":
+        print('Falta 1 mês até o torneio, como você passa a maior parte do seu tempo?')
+        console.print('1. Participando de jantares e festas com o Rei')
+        console.print('2. Aproveitando da popularidade para festejar na cidade com outros membros da Ordem sem ter de gastar um único denário')
+        console.print('3. Treinando para o torneio')
+        PrimeiraEscolha = input()
+        if PrimeiraEscolha == '1':
+            console.print('Durantes as festas, qual é sua prioridade?')
+            console.print('1. Tentar fazer o Rei ficar bêbado de novo')
+            console.print('2. Se divertir.')
+            OutraEscolha = input()
+            if OutraEscolha == "1":
+                def ReiBebado(rolagem):
+                    if rolagem <50:
+                        console.print('Após beber um pouco ele decide parar para evitar que passe mal')
+                    elif rolagem >=50 and rolagem<75:
+                        console.print('O Rei fica bêbado o suficiente para que com lábia você seja capaz de convence-lo a lhe emprestar os cavalos mais rápidos do estabulo real para o torneio')
+                        Personagem.Bônus += random.randint(1, 100)
+                    else:
+                        console.print('O rei tem o tempo da vida dele com você, após beberem, conversarem e cantarem juntos você pode dizer que é praticamente amigo do rei')
+                        Personagem.AmigoDoRei = True
+                ReiBebado(dado(100))        
+            elif OutraEscolha == "2":
+                def Amigo_Do_Rei(Diversão):
+                    if Diversão <=50:
+                        console.print('O Rei fica satisfeito com sua presença e apreciação da festa, ambos definitivamente se tornam mais próximos')
+                        Personagem.AmigoDoRei = True
+                    else:
+                        console.print('Você se diverte como nunca antes e está satisfeito com sua escolha, nunca que uma taverna da cidade poderia lhe causar tanta diversão quanto a estupidez do bobo-da-corte ou o vinho exportado diretamente de Iolia, isso para não falar da deliciosa comida...')  
+                Amigo_Do_Rei(dado(100) + 25) 
+            elif OutraEscolha == '3':
+                console.print('_Senhor Rei, o homem invisível está lhe esperando para atendê-lo') 
+                console.print('_Diga que não posso vê-lo agora')   
+        elif PrimeiraEscolha == '2':
+            console.print("O anuncio do torneio e os rumores de que o Rei pessoalmente está torcendo para os Cavaleiros da Noite aumentaram a sua popularidade e você agora não só é reconhecido na cidade, como alguns burgueses passam a oferecer refeições gratuitas para você em algumas tavernas na esperança de atrair mais clientes interessados em estar perto de um dos competidores")
+            console.print("Você:")
+            console.print('1. Festejar longe dos camponeses, eles fedem.')
+            console.print('2. Se une aos plebeus para festejar')
+            OutraEscolha = input()
+            if OutraEscolha == '1':
+                console.print('Você se diverte bastante com seus companheiros e passam boa parte do tempo se lembrando de antigas batalhas e problemas da cidade.')
+                Personagem.Popularidade += dado(10)
+            elif OutraEscolha == '2':
+                console.print('Você decide festejar dentre os mais-humildes e conta diversas histórias a eles, que se impressionam bastante e um bardo até mesmo decide improvisar em seu alaúde um pequeno Hino à ' + Personagem.Nome + '.')
+                Personagem.Popularidade += 25
+            elif OutraEscolha == '3':
+                console.print('Eu odeio bermudas, shorts e calças sem bolso, imagina se estou caminhando pela vilarinho, acho um diamante no chão mas tenho que deixar ela lá porque não tenho aonde por.')   
+        elif PrimeiraEscolha == '3':
+            console.print('Você decide treinar com os cavalos para o torneio em um planalto próximo a cidade.')
+            Personagem.Bônus += 50
+        elif PrimeiraEscolha == '4':
+            console.print('THEN THE WINGED HUSSARS ARRIVED')
+            console.print('COMING DOWN THEY TURNED THE TIDE')
+        Rival.Ordem = 'Cavaleiros do Sol Nascente'    
+
+    if Personagem.Ordem == "Cavaleiros do Sol Nascente":
+        console.print('Falta 1 mês até o torneio, como você passa a maior parte do seu tempo?')
+        console.print('1. Festejando com os nobres')
+        console.print('2. Aproveitando da popularidade para festejar na cidade com outros membros da Ordem sem ter de gastar um único denário')
+        console.print('3. Treinando para o torneio')
+        PrimeiraEscolha = input()
+        if PrimeiraEscolha == '1':
+            console.print('Ofendidos com o Rei dar suporte público aos Larápios da Noite na competição, sua ordem obviamente recusa os convites do rei para festas, mas isso não quer dizer que você não pode festejar com outros membros da nobreza')
+            console.print('A maioria das festas são hospedadas pelo Barão Jacques de Molai em seu forte próximo a Salém, antes do jantar, você é convidado para sentar na mesa principal, aonde o Barão  levanta um copo em honra a ' + Personagem.Nome + ', ao Único ao seu falecido pai, Hugues de Molai, perguntando em seguida se esqueceu de alguém.')
+            console.print('1. "Você esqueceu do Rei Jefferson, vida longa ao Rei!"')
+            console.print('2. "Você esqueceu do Rei Henrique, vida longa ao Rei!"')
+            console.print('3. "Você não se esqueceu de ninguém."')
+            console.print('4. Ficar calado.')
+            resposta=input()
+            if resposta == '1':
+                console.print('Barão Jacques de Molai: "Mas é claro, vida longa ao Rei Jefferson!"')
+            elif resposta == '2':
+                console.print('Barão Jacques de Molai: "Mas é claro, vida longa ao Conde Henrique!"')
+                console.print('Após o jantar e enquanto você se preparava para ir embora, o Barão se aproxima e lhe chama para uma conversa em particular.')
+                console.print('Barão Jacques de Molai: "Você faz parte da facção que deseja Henrique como Rei?')
+                console.print("1. Mas é claro, Jeffeson é um bêbado incompetente que só trás desgraça a Salem.")
+                console.print("2. Não, eu simplesmente me confundi na mesa.")
+                VidaLongaAoRei = input ()
+                if VidaLongaAoRei == '1':
+                    Personagem.Traidor = True
+                    console.print('Barão Jacques de Molai: "Entendo... Bem, nós temos um plano: A sua Ordém é mais popular com  a plebe do que os Cavaleiros da Noite já que patrulham de dia e a maioria das pessoas dormem a noite, faremos caridade em seu nome, isso irá fazer com que você seja ainda mais popular do que ' + Rival.Nome + ' dos ' + Rival.Ordem + '.')
+                    console.print('Barão Jacques de Molai: Então tudo que você precisa fazer é perder de propósito, a população ficará irada enquanto nossos agentes irão espalhar que houve trapaça, uma rebelião ocorrerá e com ela Henrique terá a oportunidade de tomar o trono."')
+                    console.print(Personagem.Nome + ': Certo.')
+                    Personagem.Popularidade += dado(100)
+                elif VidaLongaAoRei == '2':
+                    console.print('Barão Jacques de Molai: "Guardas, este homem é um traidor ao Rei, prendam-o"')
+                    console.print('Os guardas que estavam vigiando a fortaleza rapidamente lhe cercam e te forçam a se render, e a despeito de seus protestos, te levam até a masmorra. Uma semana depois você é queimado vivo pelo crime de Lesa Majestade e substituído por outro membro para a competição')
+                    Personagem.Vivo = False
+                    Personagem.Vitória = False
+                    FimDoJogo() 
+            elif resposta == '3':
+                console.print('Barão Jacques de Molai: "Iniciemos o jantar então"')  
+            elif resposta == '4':
+                console.print('Após alguns segundos de silêncio o Barão declara o inicio do jantar')
+            elif resposta == '5':
+                console.print('Eu sei que ninguém vai ler isto, mas quando estou sozinho vou para o quintal, me enterro e finjo que sou uma cenoura.')             
+        elif PrimeiraEscolha == "2":
+            console.print("O anuncio do torneio e os rumores de que o Rei pessoalmente está torcendo para os Cavaleiros da Noite aumentaram a sua popularidade dentre aqueles que não gostam dele e você agora não só é \
+            reconhecido na cidade, como alguns burguese passam a oferecer refeições gratuitas para você em algumas tavernas na esperança de atrair mais clientes interessados \
+            em estar perto de um dos competidores")
+            console.print("Você:")
+            console.print('1. Festejar longe dos camponeses, eles fedem.')
+            console.print('2. Se une aos plebeus para festejar')
+            OutraEscolha = input()
+            if OutraEscolha == '1':
+                console.print('Você se diverte bastante com seus companheiros e passam boa parte do tempo se lembrando de antigas batalhas e problemas da cidade.')
+                Personagem.Popularidade += dado(10)
+            elif OutraEscolha == '2':
+                console.print('Você decide festejar dentre os mais-humildes e conta diversas histórias a eles, que se impressionam bastante e um bardo até mesmo decide improvisar em seu alaúde um pequeno Hino à ' + Personagem.Nome + '.')
+                Personagem.Popularidade += 25
+            elif OutraEscolha == '3':
+                console.print('Eu odeio bermudas, shorts e calças sem bolso, imagina se estou caminhando pela vilarinho, acho um diamante no chão mas tenho que deixar ela lá porque não tenho aonde por.')   
+        elif PrimeiraEscolha == '3':
+            console.print('Você decide treinar com os cavalos para o torneio em um planalto próximo a cidade.')
+            Personagem.Bônus += 50
+        elif PrimeiraEscolha == '4':
+            console.print('THEN THE WINGED HUSSARS ARRIVED')
+            console.print('COMING DOWN THEY TURNED THE TIDE')
+
+    console.print('')
+    console.print('Finalmente chega o dia da Grande Corrida, o hipódromo está lotado com dezenas de milhares de pessoas.')
+    if Personagem.Popularidade >= 50:
+        console.print('A maioria delas parece estar gritando ' + Personagem.Nome + ', o que ajuda a levantar seu ânimo.')
+    else:
+        console.print('A maioria delas parece estar gritando ' + Rival.Nome + ', o que parece enche-lo de arrogância.') 
 
     console.print('Ambos montam em suas carruagens e ficam um do lado do outro: ' + Personagem.Nome + ' dos ' + Personagem.Ordem + ' e ' +Rival.Nome + ' dos ' + Rival.Ordem + '.')
     console.print('O chifre é soado e a corrida começa')
     console.print('')
+    corrida()
 
-corrida()
+    RebeliãoChance = dado(100)
+    if Personagem.Vitória == True:
+        console.print('Você vence a corrida deixando seu oponente para trás!')
+        if Personagem.Popularidade >= RebeliãoChance:
+            console.print('Graças a você o reino está a salvo!')
+            FimDoJogo()
+        elif Personagem.Popularidade < RebeliãoChance:
+            console.print('A torcida não aceita o resultado e rumores de trapaça se espalham, uma rebelião começa!')
+            rebelião()    
 
-RebeliãoChance = dado(100)
-
-if Personagem.Vitória == True:
-    console.print('Você vence a corrida deixando seu oponente para trás!')
-    if Personagem.Popularidade >= RebeliãoChance:
-        console.print('Graças a você o reino está a salvo!')
-        FimDoJogo()
-    elif Personagem.Popularidade < RebeliãoChance:
-        console.print('A torcida não aceita o resultado e rumores de trapaça se espalham, uma rebelião começa!')
-        rebelião()    
-
-elif Personagem.Vitória == False:
-    console.print('Você perde a corrida, seu oponente o deixa para trás comendo poeira')
-    if Personagem.Popularidade > RebeliãoChance:
-        console.print('A torcida não aceita o resultado e rumores de trapaça por seu adversário se espalham como fogo, uma rebelião começa!')
-        rebelião()
-    elif Personagem.Popularidade <= RebeliãoChance:
-        console.print('Apesar da humilhação sofrida por sua ordem, o objetivo da corrida é cumprido e a população comemora junto com seu oponente a vitória, acalmando qualquer ânimo de rebelião.')
-        FimDoJogo()
+    elif Personagem.Vitória == False:
+        console.print('Você perde a corrida, seu oponente o deixa para trás comendo poeira')
+        if Personagem.Popularidade > RebeliãoChance:
+            console.print('A torcida não aceita o resultado e rumores de trapaça por seu adversário se espalham como fogo, uma rebelião começa!')
+            rebelião()
+        elif Personagem.Popularidade <= RebeliãoChance:
+            console.print('Apesar da humilhação sofrida por sua ordem, o objetivo da corrida é cumprido e a população comemora junto com seu oponente a vitória, acalmando qualquer ânimo de rebelião.')
+            FimDoJogo()
+Game()
