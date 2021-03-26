@@ -28,7 +28,7 @@ def rebelião():
             console.print('Ao observar pelas janelas do palácio, é possível ver a cidade em chamas, milhares de casas e zonas comerciais sendo queimadas e agitação em todas as ruas. Após alguns dias nos quais milhares morrem, o rei se apróxima de você.')
             console.print('O Rei lhe informa que há um túnel secreto pelo qual pretende fugir.')
             console.print('1. Fugir com o Rei.')
-            console;print('2. Dizer ao Rei que vai ficar')
+            console.print('2. Dizer ao Rei que vai ficar')
             console.print('3. Aconselhar o Rei a ficar e lutar.')
             if Personagem.Traidor == True:
                 print('4. Dizer ao Rei que vai ficar e vazar a localização do túnel para os partidários de Henrique.')
@@ -95,9 +95,9 @@ def rebelião():
         console.print('Você se esconde no palácio com o rei e a família real, parece que vai ficar tudo bem, mas em poucas horas a população cerca o castelo e começa a tentar invadi-lo, sendo repelidos pela guarda real. Rumores se espalham no castelo que membros da nobreza estão participando da conspiração e seus soldados pessoais participam do cerco ao castelo.')
         console.print('Ao observar pelas janelas do palácio, é possível ver a cidade em chamas, milhares de casas e zonas comerciais sendo queimadas e agitação em todas as ruas. Após alguns dias nos quais milhares morrem, o rei se apróxima de você.')
         console.print('O Rei lhe informa que há um túnel secreto pelo qual pretende fugir.')
-        print('1. Fugir com o Rei.')
-        print('2. Dizer ao Rei que vai ficar')
-        print('3. Aconselhar o Rei a ficar e lutar.')
+        console.printprint('1. Fugir com o Rei.')
+        console.print('2. Dizer ao Rei que vai ficar')
+        console.print('3. Aconselhar o Rei a ficar e lutar.')
         console.print()
         Escolha = input('')
 
