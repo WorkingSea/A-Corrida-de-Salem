@@ -1,9 +1,11 @@
 import random
+import time
 from rich.console import Console
 console = Console()
 
+#Valores do protagonista
 class Personagem:
-    def __init__(self, Nome, Ordem, Popularidade, Bônus, AmigoDoRei, Traidor, Vitória, Vivo):
+    def __init__(self, Nome, Ordem, Popularidade, Bônus, AmigoDoRei, Traidor, Vitória, Vivo, Rei):
         self.Nome = Nome
         self.Ordem = Ordem
         self.Popularidade = Popularidade
@@ -12,15 +14,17 @@ class Personagem:
         self.Traidor = Traidor
         self.Vitória = Vitória
         self.Vivo = Vivo
+        self.Rei = Rei
 
+#Valores do rival do protagonista
 class Rival:        
     def __init__(self, Nome, Ordem, Bônus):
         self.Nome = Nome
         self.Ordem = Ordem
         self.Bônus = Bônus
 
+#Código da rebelião
 def rebelião():
-
     def linchamento(chance):
         if chance >= 50:
             console.print('A população furiosa invade o campo de corrida e uma multidão se vira em sua direção, visando lhe linchar, com sorte, você consegue escapar e com ajuda da guarda real, foge para o castelo aonde se refugia.')
@@ -40,11 +44,11 @@ def rebelião():
                 Vencedor = dado(2)
                 if Vencedor == 1:
                     console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Jefferson retoma o controle de Salém e derrota os demais rebeldes, ' + Personagem.Nome + ' se torna o novo Grão-Mestre dos + ' + Personagem.Ordem + '.')
-                    FimDoJogo()
+                    fim_do_jogo()
                 elif Vencedor == 2:
                     console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Henrique mata o Rei Jefferson na Batalha do Vale da Morte, ' + Personagem.Nome + ' morre durante a batalha ferido pela lança de um dos cavaleiros inimigos. Conde Henrique, agora Rei Henrique se torna o Rei indubitável de Salém.')
                     Personagem.Vivo = False
-                    FimDoJogo()
+                    fim_do_jogo()
 
             elif Escolha == '2':
                 console.print(Personagem.Nome + ' fica no castelo enquanto a família real foge, eventualmente os guardas cedem e o exército dos aristocratas junto com parte da população invade o castelo.')
@@ -62,33 +66,33 @@ def rebelião():
                     Vencedor = dado(2)
                     if Vencedor == 1:
                         console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Jefferson retoma o controle de Salém e derrota os demais rebeldes e restabelece seu reinado.')
+                        fim_do_jogo()
                     elif Vencedor == 2:
                         console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Henrique mata o Rei Jefferson na Batalha do Vale da Morte, Conde Henrique, agora Rei Henrique se torna o Rei indubitável de Salém')
-                
-                FimDoJogo()
+                        fim_do_jogo()
             
             elif Escolha == '3':
                 Rebeldia = dado(100)
                 if Personagem.Popularidade >= Rebeldia:
                     console.print('O Rei concorda, e cria um plano, lhe enviando com um sacos de ouro para distribuir para a população visando distrai-la, o plano dá certo e não só a população como vários dos soldados fieis a Henrique se distraem com a chance de ouro, e Jefferson aproveita a situação para lançar seu contra-ataque, pegando os rebeldes de surpresa e iniciando uma batalha no centro da cidade, os' + Personagem.Ordem + ' chegam em meio a batalha auxiliando o Rei e em pouco tempo os rebeldes são esmagados e Henrique é preso, sendo executado uma semana depois em praça pública pelo crime de traição, a Ordem dos ' + Rival.Ordem + ' é expurgada e a aristocracia traidora que não morreu durante a batalha sofre o mesmo destino de Henrique, incluindo ' + Rival.Nome + '.')
-                    FimDoJogo()
+                    fim_do_jogo()
                 elif Personagem.Popularidade < Rebeldia:
                     console.print('O Rei concorda, e cria um plano, lhe enviando com um sacos de ouro para distribuir para a população visando distrai-la, o plano dá errado e assim que você sai com as moedas de ouro você é atacado pela população e é espancado até a morte, algumas semanas depois o assalto ao palácio tem sucesso e o Rei Jefferson é capturado e executado, Conde Henrique é coroado o novo Rei indisputável de Salém.')
                     Personagem.Vivo = False
-                    FimDoJogo()    
+                    fim_do_jogo()    
             elif chance < 50:
                 console.print('A população furiosa invade o campo de corrida e uma multidão se vira em sua direção, visando lhe linchar. Eles conseguem lhe capturar e você é espancado até a morte pela multidão.')
                 Personagem.Vivo = False
-                FimDoJogo()
+                fim_do_jogo()
 
             elif Escolha == '4':
                 console.print('Barão Jacques de Molai viaja com seus soldados até o fim do túnel e assassina o Rei quando este tenta sair, o palácio é eventualmente assaltado e você é poupado, Henrique é coroado o novo Rei indisputável de Salém. Você é presenteado com títulos em uma cidade costeira e rapidamente se torna um dos homens mais ricos de Salém.')
-                FimDoJogo()    
+                fim_do_jogo()    
 
         elif chance <= 50:
             console.print('A população furiosa invade o campo de corrida e parte da multidão se vira em sua direção, visando lhe linchar, você tenta escapar mas não consegue, sendo espancado até a morte pele público.')
             Personagem.Vivo = False
-            FimDoJogo()   
+            fim_do_jogo()   
 
     if Personagem.Vitória == True and Personagem.AmigoDoRei == True:
         console.print('A população furiosa invade o campo de corrida e uma multidão se vira em sua direção, visando lhe linchar. Por sorte, membros da guarda real intervem e um deles lhe agarra pelo braço e lhe puxa para fora do domo e você é levado para o palácio real, nas ruas a rebelião parece ter se espalhado, e todos parecem querer a sua cabeça, mas ao menos no palácio você estará seguro.')
@@ -106,11 +110,11 @@ def rebelião():
             Vencedor = dado(2)
             if Vencedor == 1:
                 console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Jefferson retoma o controle de Salém e derrota os demais rebeldes, ' + Personagem.Nome + ' se torna o novo líder da Ordem dos Cavaleiros da Noite e devido a sua lealdade e comando na guerra civil, se torna o novo marechal do Reino, substituindo o Barão Jacques de Molai, que havia se aliado aos traidores.')
-                FimDoJogo()
+                fim_do_jogo()
             elif Vencedor == 2:
                 console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Henrique mata o Rei Jefferson na Batalha do Vale da Morte, ' + Personagem.Nome + ' morre durante a batalha ferido pela lança de um dos cavaleiros inimigos. Conde Henrique, agora Rei Henrique se torna o Rei indubitável de Salém e ' + Rival.Nome + ' se torna o novo marechal do reino como recompensa devido a sua lealdade a Henrique e comando durante a guerra civil, eventualmente se tornando também o Grão-Mestre da Ordem dos Cavaleiros do Sol Nascente.')
                 Personagem.Vivo = False
-                FimDoJogo()
+                fim_do_jogo()
 
         elif Escolha == '2':
             console.print(Personagem.Nome + ' fica no castelo enquanto a família real foge, eventualmente os guardas cedem e o exército dos aristocratas junto com parte da população invade o castelo.')
@@ -121,7 +125,7 @@ def rebelião():
             if rendição == '1':
                 console.print('Se rendendo ao aos invasores, você é imediatamente preso enquanto Henrique é coroado Rei de Salém.')
                 console.print('Uma semana após sua prisão, o Grão Mestre de sua ordem negocia sua libertação em troca de suporte a Henrique, o que é aceito e você é prontamente libertado. Distante de Salém, Jefferson tenta organizar um contra-ataque, mas com a maioria das ordens apoiando Henrique, sua tentativa falha e Jefferson foge de Salém, se refugiando em outro reino.')
-                FimDoJogo()
+                fim_do_jogo()
 
             elif rendição == '2':
                 console.print('Você morre em batalha junto da guarda real, o Rei, longe da capital, se organiza com os vassalos que o apoiavam e inicia a contra-revolução contra Henrique.')
@@ -132,17 +136,16 @@ def rebelião():
                 elif Vencedor == 2:
                     console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Henrique mata o Rei Jefferson na Batalha do Vale da Morte, Conde Henrique, agora Rei Henrique se torna o Rei indubitável de Salém e ' + Rival.Nome + ' se torna o novo marechal do reino como recompensa devido a sua lealdade a Henrique e comando durante a guerra civil, eventualmente se tornando também o grão-mestre da Ordem dos Cavaleiros do Sol Nascente.')
 
-
-            FimDoJogo()
+            fim_do_jogo()
         elif Escolha == '3':
             Rebeldia = dado(100)
             if Personagem.Popularidade >= Rebeldia:
                 console.print('O Rei concorda, e cria um plano, lhe enviando com um sacos de ouro para distribuir para a população visando distrai-la, o plano dá certo e não só a população como vários dos soldados fieis a Henrique se distraem com a chance de ouro, e Jefferson aproveita a situação para lançar seu contra-ataque, pegando os rebeldes de surpresa e iniciando uma batalha no centro da cidade, os Cavaleiros da Noite chegam em meio a batalha auxiliando o Rei e em pouco tempo os rebeldes são esmagados e Henrique é preso, sendo executado uma semana depois em praça pública pelo crime de traição, a Ordem dos Cavaleiros do Sol Nascente é expurgada e a aristocracia traidora que não morreu durante a batalha sofre o mesmo destino de Henrique.')
-                FimDoJogo()
+                fim_do_jogo()
             elif Personagem.Popularidade < Rebeldia:
                 console.print('O Rei concorda, e cria um plano, lhe enviando com um sacos de ouro para distribuir para a população visando distrai-la, o plano dá errado e assim que você sai com as moedas de ouro você é atacado pela população e é espancado até a morte, algumas semanas depois o assalto ao palácio tem sucesso e o Rei Jefferson é capturado e executado, Conde Henrique é coroado o novo Rei indisputável de Salém.')
                 Personagem.Vivo = False
-                FimDoJogo()    
+                fim_do_jogo()    
 
     if Personagem.Vitória == True and Personagem.AmigoDoRei == False:
         linchamento(dado(100))
@@ -152,7 +155,7 @@ def rebelião():
         print('Você se refugia no palácio real com o Rei, por 3 dias chamas e corpos vão se acumulando na cidade.')
         console.print('No terceiro ele faz faz um discurso ao público com você ao lado afirmando que de foram descobertas intervenções estrangeiras, os eletrianos haviam envenenado o cavalo de ' + Personagem.Nome + ' antes do torneio, o que o causou a não correr tão rápido quanto devia.')
         console.print(Rival.Nome + ' é preso por conspiração e executado em praça pública, isso parece ser o suficiente para acalmar a população enquanto você é considerado vencedor a posteriori.')
-        FimDoJogo()
+        fim_do_jogo()
 
     if Personagem.Vitória == False and Personagem.Traidor == True:
             console.print('Em meio a rebelião, os nobres insatisfeitos com o rei aproveitam a situação para tentar organizar a população se rebelando junto de seus próprios exércitos para atacar o palácio.')
@@ -169,30 +172,30 @@ def rebelião():
                 Vencedor = dado(2)
                 if Vencedor == 1:
                     console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Henrique mata o Rei Jefferson na Batalha do Vale da Morte, devido a sua lealdade e comando na guerra civil,' + Personagem.Nome + ' se torna o novo marechal do Reino, substituindo o Barão Jacques de Molai, que morreu pela lança de um dos cavaleiros inimigos durante a Batalha do Vale das Sombras.')
-                    FimDoJogo()
+                    fim_do_jogo()
                 elif Vencedor == 2:
                     console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Jefferson finalmente marcha sobre Salem novamente como seu rei, ' + Personagem.Nome + ' morre durante o cerco de Salém alvejado por uma flecha inimiga. Jefferson se restabelece como Rei indubitável de Salém.')
                     Personagem.Vivo = False
-                    FimDoJogo()
+                    fim_do_jogo()
 
             elif RebeliãoSucedida == '2':
                 Vencedor = dado(2)
                 if Vencedor == 1:
                     console.print('Henrique marcha até o palácio e após alguns dais de cerco, consegue o tomar de assalto da guarda real, entretanto, Jefferson havia fugido em um túnel secreto e se refugiado nas cidades vizinhas, Henrique é coroado Rei em Salém, mas Jefferson levanta um exército dentre seus apoiadores e com o reino dividido, uma guerra civil se inicia.')
                     console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Henrique mata o Rei Jefferson na Batalha do Vale da Morte.' + Personagem.Nome + ' se torna eventualmente o novo Grão-Mestre dos Cavaleiros do Sol Nascente, seu papel na conspiração um segredo para a história, mas necessário para salvar Salém da incompetência de Jefferson.')
-                    FimDoJogo()
+                    fim_do_jogo()
                 elif Vencedor == 2:
                     DedoDuro = dado(2)
                     if DedoDuro == 1:
                         console.print('Henrique marcha até o palácio e após alguns dais de cerco, consegue o tomar de assalto da guarda real, entretanto, Jefferson havia fugido em um túnel secreto e se refugiado nas cidades vizinhas, Henrique é coroado Rei em Salém, mas Jefferson levanta um exército dentre seus apoiadores e com o reino dividido, uma guerra civil se inicia.')
                         console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Jefferson finalmente marcha sobre Salem novamente como seu rei. O papel de' + Personagem.Nome + ' na conspiração é revelado pelo Barão Jacques após ser torturado, e ' + Personagem.Nome + ' é preso e degolado alguns dais depois em praça pública. Jefferson se restabelece como o Rei indubitável de Salém até o fim de sua vida.')
                         Personagem.Vivo = False
-                        FimDoJogo()
+                        fim_do_jogo()
                     elif DedoDuro == 2: 
                         console.print('Henrique marcha até o palácio e após alguns dais de cerco, consegue o tomar de assalto da guarda real, entretanto, Jefferson havia fugido em um túnel secreto e se refugiado nas cidades vizinhas, Henrique é coroado Rei em Salém, mas Jefferson levanta um exército dentre seus apoiadores e com o reino dividido, uma guerra civil se inicia.')
                         console.print('Após anos de sangrenta guerra e diversos expurgos nas ordens de cavalaria, Jefferson finalmente marcha sobre Salem novamente como seu rei, com os conspiradores e traidores degolados em praça pública Jefferson se restabelece como o Rei indubitável de Salém até o fim de sua vida.')
                         console.print(Personagem.Nome + ' se torna eventualmente o novo Grão-Mestre dos Cavaleiros do Sol Nascente, seu papel na vergonhosa conspiração um segredo para a história que nunca foi revelado.')
-                        FimDoJogo()
+                        fim_do_jogo()
 
             elif RebeliãoSucedida == '3':
                 console.print('Henrique marcha até o palácio, cercando-o com o objetivo de assalta-lo, mas suas ações não são despercebidas e logo os soldados da facção de Henrique começam a entrar em combate com os seus, até o ponto de briga generalizada na cidade que agora ardia em chamas. Jefferson vê a divisão entre os rebeldes como oportunidade para um contra-ataque e logo as ruas são tomadas por brigas entre os diferentes partidários, com Henrique comandando um grupo, Jefferson outro e você o resto. As ordens de cavalaria se dividem entre os três grupos e logo começam a batalhar entre si também, o resto do Reino aguarda o resultado da batalha para decidir qual lado tomar.')
@@ -200,15 +203,16 @@ def rebelião():
                 if Vencedor == 1:
                     console.print('Após semanas de caos na cidade, o Rei e seus aliados conseguem subjulgar as outras facções, Henrique é capturado e enforcado em praça pública, enquanto ' + Personagem.Nome + ' morre em combate fatiado pela espada de ' + Rival.Nome + ' em um combate pessoal. A ordem é restabelecida em Salém.')
                     Personagem.Vivo = False
-                    FimDoJogo()
+                    fim_do_jogo()
 
                 elif Vencedor == 2:
                     console.print('Após semanas de caos na cidade, Henrique consegue subjulgar as outras facções, o Rei é morto por Henrique em um combate pessoal enquanto ' + Personagem.Nome + ' é capturado em batalha e após a coroação de Henrique, executado em praça pública, sendo marcado pela história como um oportunista que falhou.')
                     Personagem.Vivo = False
-                    FimDoJogo()
+                    fim_do_jogo()
                 elif Vencedor == 3:
                     console.print('Após semanas de caos na cidade, ' + Personagem.Nome + ' consegue subjulgar as outras facções, Henrique é derrotado em um combate pessoal enquanto Jefferson é encurralado enquanto tentava fugir e linchado pela população. ' + Personagem.Nome + ' é coroado o novo Rei de Salém. Vida Longa ao Rei!')
-                    FimDoJogo()               
+                    Personagem.Rei = True
+                    fim_do_jogo()               
 
     if Personagem.Vitória == False and Personagem.AmigoDoRei == False and Personagem.Traidor == False:
         console.print('A população irada invade o campo e pula encima de ' + Rival.Nome + ', linchando-o vivo em uma cena horrorosa e brutal, em meio a confusão alguns de seus camaradas ' + Personagem.Ordem + ' invadem o campo e ajudam a te proteger, lhe guiando para fora do hipódromo e de volta para a base da ordem.')
@@ -221,100 +225,109 @@ def rebelião():
                 console.print('Grão-Mestre: É nosso dever manter a ordem na cidade durante as manhãs, e hoje não é diferente. A cidade está em chamas, o que era para ser um evento esportivo se tornou um mar de sangue. É hora de nos organizamos e pormos um fim a essa rebelião e restaurar ordem a Salém. Por Lisandros, por Salém, pelo Único!')
                 console.print('Você, junto dos demais cavaleiros equipam suas armas e montam em seus cavalos, e partem para conter a rebelião, o dia é longo e difícil: Muitos daqueles que gritaram seu nome estavam entre os rebeldes e muitos deles mortos por sua própria espada. Mais tarde, membros de outras ordens se unem para ajudar a conter a rebelião, incluindo Cavaleiros da Noite, a Liga Dourada e até mesmo os Escudeiros da Fenix, que normalmente só lutavam em guerras e ignoravam os acontecimentos da cidade.') 
                 print('A noite chega e vocês estão exaustos, mas a rebelião é contida com sucesso, cerca de 30.000 habitantes foram mortos, mas a ordem é mantida e vocês retornam para a base.')
-                FimDoJogo()
+                fim_do_jogo()
             if Personagem.Ordem == "Cavaleiros da Noite":
                 console.print('Grão-Mestre: É nosso dever manter a ordem na cidade durante as noites, mas os Cavaleiros do Sol Nascente claramente falharam. A cidade está em chamas, o que era para ser um evento esportivo se tornou um mar de sangue. É hora de nos organizamos e pormos um fim a essa rebelião e restaurar ordem a Salém, se não nós, quem? Por Lisandros, por Salém, pelo Único!')
                 console.print('Você, junto dos demais cavaleiros equipam suas armas e montam em seus cavalos, e partem para conter a rebelião, o dia é longo e difícil: Muitos daqueles que gritaram seu nome estavam entre os rebeldes e muitos deles mortos por sua própria espada. Mais tarde, os Cavaleiros do Sol Nascente finalmente chegam, trazendo junto a Liga Dourada e até mesmo os Escudeiros da Fenix, que normalmente só lutavam em guerras e ignoravam os acontecimentos da cidade.') 
                 print('A noite chega e vocês estão exaustos, mas a rebelião é contida com sucesso, cerca de 30.000 habitantes foram mortos, mas a ordem é mantida, mesmos cansados, ainda havia o resto da noite para patrulhar e você se empurra pela noite')
-                FimDoJogo()
+                fim_do_jogo()
         if GuerraCivil == 2:
             console.print('Grão-Mestre: Eu fui informado por Nestor Genrikh da Ordem do Sangue que a rebelião que ocorreu é uma conspiração da nobreza contra o Rei, ele me aconselhou a não agir até realizarmos uma convocação do Conselho Real e irei tomar o conselho dele.')         
             print('Algumas semanas depois...')
+            time.sleep(1)
             console.print('Grão-Mestre: O conselho está feito, com o Conde Henrique, ou melhor, Rei Henrique tomando o castelo e sendo coroado Rei, tivemos de , os Cavaleiros da Noite, os Guardiões do Pergaminho e os Guardiões da Prece declaramos neutralidade, mas as demais ordens votaram em favor de reconhecer Henrique como Rei e forçar a abdicação de Jefferson, aparentemente Henrique é um dos descendentes de Willalme, quem adivinharia? Huh.')
             console.print('Jefferson foge de Salém e se recusa a reconhecer as decisões do Conselho, mas sem suporte de nenhuma das ordens ou da nobreza, ele é incapaz de levantar um exército e abandona o continente. Vida Longa ao Novo Rei Henrique!')
-            FimDoJogo()
+            fim_do_jogo()
 
-def FimDoJogo():
+#Código de fim de jogo
+def fim_do_jogo():
     console.print('Este é o fim do jogo, espero que tenha gostado. Existem outros finais dependendo de suas escolhas e sua sorte.')
     console.print('Seu nome é ' + Personagem.Nome + '.')
     console.print('Você foi um membro dos ' + Personagem.Ordem + '.')
     print('Seu nível de popularidade entre a população era de ' + str(Personagem.Popularidade) + '%.')
     console.print('Seu rival era ' + Rival.Nome + " da ordem dos " + Rival.Ordem + '.')
-
     if Personagem.Vivo == True:
         console.print('Você sobreviveu aos eventos da Corrida de Salém.')
     if Personagem.Vivo == False:
         console.print('Você morreu durante os eventos da Corrida de Salém.')
     if Personagem.AmigoDoRei == True:
-        console.print('Você foi amigo do Rei.')
+        console.print('Você foi amigo do Rei Jefferson.')
     if Personagem.AmigoDoRei == False:
-        console.print('Você não era amigo do Rei.')
+        console.print('Você não era amigo do Rei Jefferson.')
     if Personagem.Traidor == True:
-        console.print('Você fazia parte da conspiração contra o Rei.')
+        console.print('Você fazia parte da conspiração contra o Rei Jefferson.')
     if Personagem.Traidor == False:
-        console.print('Você não fazia parte da conspiração contra o Rei')
+        console.print('Você não fazia parte da conspiração contra o Rei Jefferson')
     if Personagem.Vitória == True:
         console.print('Você venceu o torneio.')
     if Personagem.Vitória == False:
         console.print('Você não venceu o torneio.')
+    if Personagem.Rei == True:
+        console.print('Você se tornou Rei de Salém')
+    if Personagem.Rei == False:
+        console.print('Você não se tornou Rei de Salém')
     print('')
     console.print('Obrigado por Jogar, digite 1 e aperte enter para jogar novamente ou 2 para fechar o programa.')
     Restart = input()
 
     if Restart == '1':
-        Game()
+        main()
     elif Restart == '2':    
         raise SystemExit()
     else:
+        string='VAMOS TODOS AMAR LAIN '
         while True:
-            print('VAMOS TODOS AMAR LAIN')      
+            print(string)
+            string = string + string  
+            time.sleep(0.5)
 
+#Dado a ser rolado
 def dado(lados):
     return random.randint(1, lados)
 
-
+#Eventos da corrida
 def corrida():
-    def VelocidadeCheque():
+    def velocidade_cheque():
         if ProtagonistaVelocidade > InimigoVelocidade:
                 console.print('No momento você está ganhando a corrida.')
         elif InimigoVelocidade > ProtagonistaVelocidade:
                 console.print('No momento ' + Rival.Nome + ' está ganhando a corrida.')
 
-    def CavaloMorte(Energia):
+    def cavalo_morte(Energia):
         EnergiaLimite = 30    
         if Energia <= EnergiaLimite:
             console.print('Um de seus cavalos sofre um ataque cardíaco durante a corrida e a carroça capota')
             Personagem.Vitória = False
                
 
-    def Volta():
+    def volta():
         console.print('1. Forçar os cavalos')
         console.print('2. Manter a velocidade atual')
         console.print('3. Forçar menos o Cavalo')
         ação = input()
         if ação == '1':
-            CavaloMorte(dado(100))
+            cavalo_morte(dado(100))
             return 20
         elif ação =='2':
-            CavaloMorte(dado(500))
+            cavalo_morte(dado(500))
             return 0
         elif ação == '3':
             return -20
 
-    ProtagonistaVelocidade = dado(100) + Personagem.Bônus + Volta()
+    ProtagonistaVelocidade = dado(100) + Personagem.Bônus + volta()
     InimigoVelocidade = dado(100) + Rival.Bônus
     if Personagem.Vitória == False:
         return None
-    VelocidadeCheque()
+    velocidade_cheque()
 
-    ProtagonistaVelocidade += dado(100) + Personagem.Bônus + Volta() 
+    ProtagonistaVelocidade += dado(100) + Personagem.Bônus + volta() 
     InimigoVelocidade += dado(100) + Rival.Bônus
     if Personagem.Vitória == False:
         return None
-    VelocidadeCheque()
+    velocidade_cheque()
 
 
-    ProtagonistaVelocidade += dado(100) + Personagem.Bônus + Volta() 
+    ProtagonistaVelocidade += dado(100) + Personagem.Bônus + volta() 
     InimigoVelocidade += dado(100) + Rival.Bônus
     if Personagem.Vitória == False:
         return None
@@ -324,13 +337,15 @@ def corrida():
     elif InimigoVelocidade > ProtagonistaVelocidade:
         Personagem.Vitória = False    
 
-def Game():
+#Jogo
+def main():
     Personagem.AmigoDoRei = False
     Personagem.Popularidade = 25
     Personagem.Bônus = 0
-    Personagem.Vitória = ''
+    Personagem.Vitória = None
     Personagem.Traidor = False
     Personagem.Vivo = True
+    Personagem.Rei = False
 
     Rival.Bônus = dado(50)
 
@@ -341,11 +356,12 @@ def Game():
     console.print("2.Beber refrigerante ")
     console.print("3.Beber suco"
     )
-    console.print("Em uma situação como essa, você escolhe a sua ação simplesmente digitando o número, por exemplo, caso queira beber água você simplesmente digita 1 e aperta enter"
+    console.print("Em uma situação como essa, você escolhe a sua ação simplesmente digitando o número, por exemplo, caso queira beber água você simplesmente digita 1 e aperta enter."
     )
 
     console.print("Quando estiver pronto para jogar, aperte enter")
     input()
+    print('')
     print('''\
                                           .o.                                                                             
                                          .888.                                                                                           
@@ -385,6 +401,7 @@ def Game():
                 oo     .d8P d8(  888   888  888    .o  888   888   888  
                 8""88888P'  `Y888""8o o888o `Y8bod8P' o888o o888o o888o 
                           ''')
+    time.sleep(1)
 
     print('''\
 
@@ -422,22 +439,15 @@ def Game():
 
                                     ASCII by Normand Veilleux
                               ''')
+    time.sleep(1)
     print("O ano é 25 AGC, os Estados Cruzados (ou Reino de Salém, como é chamado por seus nativos) é governado por Jefferson de Nika, que herdou o reino de seu infértil tio. ")
-    console.print("Jefferson se encontra em uma situação difícil, a guerra contra os pagãos de Eletria começou com sucesso, mas recentemente\
-    o exército de Salém havia sido massacrado na Batalha do Rio Negro, \
-    causando um grande dano a popularidade de Jefferson e até mesmo fazendo com que suporte ao Conde Henrique") 
-    console.print("Henrique, diferente de Jefferson, não teve a reputação manchada \
-    por perder alguma batalha e é bem jovem ainda, é conhecido por sua devoção religiosa ao Único e havia aconselhado o Rei a recuar ao invés de lutar a Batalha do Rio Negro")
+    console.print("Jefferson se encontra em uma situação difícil, a guerra contra os pagãos de Eletria começou com sucesso, mas recentemente o exército de Salém havia sido massacrado na Batalha do Rio Negro, causando um grande dano a popularidade de Jefferson e até mesmo fazendo com que suporte ao Conde Henrique") 
+    console.print("Henrique, diferente de Jefferson, não teve a reputação manchada por perder alguma batalha e é bem jovem ainda, é conhecido por sua devoção religiosa ao Único e havia aconselhado o Rei a recuar ao invés de lutar a Batalha do Rio Negro")
     console.print('Para distrair a população e evitar rebelião, o Rei Jefferson decide distrair a população com uma grande corrida de bigas.')
     console.print("Para participar na corrida, Jefferson convoca os Cavaleiros da Noite e os Cavaleiros do Sol Nascente")
     console.print("Ambas as ordens aceitam imediatamente a ordem e começam a se preparar para a corrida, que para elas representa algo muito maior: ")
-    console.print("Ambas as ordens tem um grande sentimento de rivalidade, \
-    os Cavaleiros do Sol Nascente normalmente patrulham a cidade de dia e os Cavaleiros da Noite, bem, a noite.")
-    console.print("O resultado é que, quando problemas ocorrem, ambas passam a culpar uma a outra por não terem cumprido bem o seu papel afirmando que a origem do \
-    problema é a negligência da outra, essas disputas já resultaram em batalhas em tavernas, e a população, \
-    sempre mesmerizada com os fantásticos cavaleiros, começa a tomar lados também, de forma que o conflito é, \
-    não só uma questão de prestigio, mas também de popularidade para ambas as ordens, \
-    que agora tem uma válvula de escape para a sua rivalidade em forma de corrida.")
+    console.print("Ambas as ordens tem um grande sentimento de rivalidade, os Cavaleiros do Sol Nascente normalmente patrulham a cidade de dia e os Cavaleiros da Noite, bem, a noite.")
+    console.print("O resultado é que, quando problemas ocorrem, ambas passam a culpar uma a outra por não terem cumprido bem o seu papel afirmando que a origem do problema é a negligência da outra, essas disputas já resultaram em batalhas em tavernas, e a população, sempre mesmerizada com os fantásticos cavaleiros, começa a tomar lados também, de forma que o conflito é, não só uma questão de prestigio, mas também de popularidade para ambas as ordens, que agora tem uma válvula de escape para a sua rivalidade em forma de corrida.")
     console.print("")
     console.print("Qual é o seu nome?")
     Personagem.Nome = input()
@@ -452,33 +462,23 @@ def Game():
     elif firstchoice == "2":
         Personagem.Ordem = "Cavaleiros do Sol Nascente" 
     elif firstchoice == '3':
-        console.print('Vamos todos amar Lain')
         Personagem.Ordem = "Cavaleiros do Calculo Oriental"
-        Rival.Ordem = 'Winged Hussars'
+        Personagem.Popularidade = int(input('Popularidade: '))
+        Personagem.Bônus = int(input('Bônus: '))
+        Personagem.AmigoDoRei = int(input('Amigo do Rei (1 ou 0): '))
+        Personagem.Traidor = int(input('Traidor (1 ou 0): '))
+        Rival.Ordem = input('Ordem do Rival: ')
 
     console.print("")    
-    console.print(
-      "Como membro dos "
-      + Personagem.Ordem
-      + ", você passa a boa parte do seu tempo patrulhando os subúrbios de Salem a procura de encrenqueiros e ladrões\
-    ou escoltando os arredores em seu cavalo a procura de coisas suspeitas.") 
-
-    console.print("Quando não se há nada de interessante, para passar o tempo, \
-    você costuma competir em corridas com seus irmãos em armas e após ganhar grande parte delas,\
-    você passa a ganhar uma fama dentro na Ordem como um dos mais rápidos cavaleiros\
-    , por isso, não é com surpresa que logo após a corrida ser anunciada você foi escolhido para representar os " + Personagem.Ordem + '.')
+    console.print("Como membro dos "+ Personagem.Ordem+ ", você passa a boa parte do seu tempo patrulhando os subúrbios de Salem a procura de encrenqueiros e ladrões ou escoltando os arredores em seu cavalo a procura de coisas suspeitas.") 
+    console.print("Quando não se há nada de interessante, para passar o tempo, você costuma competir em corridas com seus irmãos em armas e após ganhar grande parte delas, você passa a ganhar uma fama dentro na Ordem como um dos mais rápidos cavaleiros, por isso, não é com surpresa que logo após a corrida ser anunciada você foi escolhido para representar os " + Personagem.Ordem + '.')
 
     if Personagem.Ordem == "Cavaleiros da Noite":
-        console.print(
-            "Algumas semanas antes da competição, Jefferson revelou bêbado em um jantar\
-     que está torcendo para os Cavaleiros da Noite, com o suporte dele sua popularidade cresce mais do que nunca"
-        )
+        console.print("Algumas semanas antes da competição, Jefferson revelou bêbado em um jantarque está torcendo para os Cavaleiros da Noite, com o suporte dele sua popularidade cresce mais do que nunca")
         Rival.Ordem = "Cavaleiros do Sol Nascente"
         Rival.Nome = 'Julius'
     else:
-        console.print(
-            "Algumas semanas antes da competição, o traidor do Rei disse que está torcendo para os Cavaleiros da Noite,\
-     será que o idiota não percebe que sem nós a cidade estaria em caos?")
+        console.print("Algumas semanas antes da competição, o traidor do Rei disse que está torcendo para os Cavaleiros da Noite, será que o idiota não percebe que sem nós a cidade estaria em caos?")
         console.print("O Grão-Mestre está furioso, e proíbe que os membros da Ordem participem de festas com o Rei ou digam coisas positivas a seu respeito em uma especie de boicote.")
         Personagem.Popularidade += 25
         Rival.Ordem = "Cavaleiros da Noite"
@@ -496,7 +496,7 @@ def Game():
             console.print('2. Se divertir.')
             OutraEscolha = input()
             if OutraEscolha == "1":
-                def ReiBebado(rolagem):
+                def rei_bebado(rolagem):
                     if rolagem <50:
                         console.print('Após beber um pouco ele decide parar para evitar que passe mal')
                     elif rolagem >=50 and rolagem<75:
@@ -505,18 +505,15 @@ def Game():
                     else:
                         console.print('O rei tem o tempo da vida dele com você, após beberem, conversarem e cantarem juntos você pode dizer que é praticamente amigo do rei')
                         Personagem.AmigoDoRei = True
-                ReiBebado(dado(100))        
+                rei_bebado(dado(100))        
             elif OutraEscolha == "2":
-                def Amigo_Do_Rei(Diversão):
+                def amigo_do_rei(diversão):
                     if Diversão <=50:
                         console.print('O Rei fica satisfeito com sua presença e apreciação da festa, ambos definitivamente se tornam mais próximos')
                         Personagem.AmigoDoRei = True
                     else:
                         console.print('Você se diverte como nunca antes e está satisfeito com sua escolha, nunca que uma taverna da cidade poderia lhe causar tanta diversão quanto a estupidez do bobo-da-corte ou o vinho exportado diretamente de Iolia, isso para não falar da deliciosa comida...')  
-                Amigo_Do_Rei(dado(100) + 25) 
-            elif OutraEscolha == '3':
-                console.print('_Senhor Rei, o homem invisível está lhe esperando para atendê-lo') 
-                console.print('_Diga que não posso vê-lo agora')   
+                amigo_do_rei(dado(100) + 25) 
         elif PrimeiraEscolha == '2':
             console.print("O anuncio do torneio e os rumores de que o Rei pessoalmente está torcendo para os Cavaleiros da Noite aumentaram a sua popularidade e você agora não só é reconhecido na cidade, como alguns burgueses passam a oferecer refeições gratuitas para você em algumas tavernas na esperança de atrair mais clientes interessados em estar perto de um dos competidores")
             console.print("Você:")
@@ -529,14 +526,9 @@ def Game():
             elif OutraEscolha == '2':
                 console.print('Você decide festejar dentre os mais-humildes e conta diversas histórias a eles, que se impressionam bastante e um bardo até mesmo decide improvisar em seu alaúde um pequeno Hino à ' + Personagem.Nome + '.')
                 Personagem.Popularidade += 25
-            elif OutraEscolha == '3':
-                console.print('Eu odeio bermudas, shorts e calças sem bolso, imagina se estou caminhando pela vilarinho, acho um diamante no chão mas tenho que deixar ela lá porque não tenho aonde por.')   
         elif PrimeiraEscolha == '3':
             console.print('Você decide treinar com os cavalos para o torneio em um planalto próximo a cidade.')
             Personagem.Bônus += 50
-        elif PrimeiraEscolha == '4':
-            console.print('THEN THE WINGED HUSSARS ARRIVED')
-            console.print('COMING DOWN THEY TURNED THE TIDE')
         Rival.Ordem = 'Cavaleiros do Sol Nascente'    
 
     if Personagem.Ordem == "Cavaleiros do Sol Nascente":
@@ -573,13 +565,12 @@ def Game():
                     console.print('Os guardas que estavam vigiando a fortaleza rapidamente lhe cercam e te forçam a se render, e a despeito de seus protestos, te levam até a masmorra. Uma semana depois você é queimado vivo pelo crime de Lesa Majestade e substituído por outro membro para a competição')
                     Personagem.Vivo = False
                     Personagem.Vitória = False
-                    FimDoJogo() 
+                    fim_do_jogo() 
             elif resposta == '3':
                 console.print('Barão Jacques de Molai: "Iniciemos o jantar então"')  
             elif resposta == '4':
                 console.print('Após alguns segundos de silêncio o Barão declara o inicio do jantar')
-            elif resposta == '5':
-                console.print('Eu sei que ninguém vai ler isto, mas quando estou sozinho vou para o quintal, me enterro e finjo que sou uma cenoura.')             
+
         elif PrimeiraEscolha == "2":
             console.print("O anuncio do torneio e os rumores de que o Rei pessoalmente está torcendo para os Cavaleiros da Noite aumentaram a sua popularidade dentre aqueles que não gostam dele e você agora não só é \
             reconhecido na cidade, como alguns burguese passam a oferecer refeições gratuitas para você em algumas tavernas na esperança de atrair mais clientes interessados \
@@ -594,14 +585,9 @@ def Game():
             elif OutraEscolha == '2':
                 console.print('Você decide festejar dentre os mais-humildes e conta diversas histórias a eles, que se impressionam bastante e um bardo até mesmo decide improvisar em seu alaúde um pequeno Hino à ' + Personagem.Nome + '.')
                 Personagem.Popularidade += 25
-            elif OutraEscolha == '3':
-                console.print('Eu odeio bermudas, shorts e calças sem bolso, imagina se estou caminhando pela vilarinho, acho um diamante no chão mas tenho que deixar ela lá porque não tenho aonde por.')   
         elif PrimeiraEscolha == '3':
             console.print('Você decide treinar com os cavalos para o torneio em um planalto próximo a cidade.')
             Personagem.Bônus += 50
-        elif PrimeiraEscolha == '4':
-            console.print('THEN THE WINGED HUSSARS ARRIVED')
-            console.print('COMING DOWN THEY TURNED THE TIDE')
 
     console.print('')
     console.print('Finalmente chega o dia da Grande Corrida, o hipódromo está lotado com dezenas de milhares de pessoas.')
@@ -620,7 +606,7 @@ def Game():
         console.print('Você vence a corrida deixando seu oponente para trás!')
         if Personagem.Popularidade >= RebeliãoChance:
             console.print('Graças a você o reino está a salvo!')
-            FimDoJogo()
+            fim_do_jogo()
         elif Personagem.Popularidade < RebeliãoChance:
             console.print('A torcida não aceita o resultado e rumores de trapaça se espalham, uma rebelião começa!')
             rebelião()    
@@ -632,5 +618,5 @@ def Game():
             rebelião()
         elif Personagem.Popularidade <= RebeliãoChance:
             console.print('Apesar da humilhação sofrida por sua ordem, o objetivo da corrida é cumprido e a população comemora junto com seu oponente a vitória, acalmando qualquer ânimo de rebelião.')
-            FimDoJogo()
-Game()
+            fim_do_jogo()
+main()
