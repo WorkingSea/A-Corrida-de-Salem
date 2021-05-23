@@ -267,7 +267,7 @@ def fim_do_jogo():
     if Personagem.Rei == False:
         console.print('Você não se tornou Rei de Salém')
     print('')
-    console.print('Obrigado por Jogar, digite 1 e aperte enter para jogar novamente ou 2 para fechar o programa.')
+    console.print('Obrigado por Jogar, digite 1 e aperte enter para jogar novamente, 2 para fechar o programa ou qualquer outra coisa para amar Lain.')
     Restart = input()
 
     if Restart == '1':
@@ -276,10 +276,11 @@ def fim_do_jogo():
         raise SystemExit()
     else:
         string='VAMOS TODOS AMAR LAIN '
-        while True:
+        for i in range(1000)
             print(string)
             string = string + string  
             time.sleep(0.5)
+        print('Feliz aniversário.')    
 
 #Dado a ser rolado
 def dado(lados):
@@ -298,7 +299,6 @@ def corrida():
         if Energia <= EnergiaLimite:
             console.print('Um de seus cavalos sofre um ataque cardíaco durante a corrida e a carroça capota')
             Personagem.Vitória = False
-               
 
     def volta():
         console.print('1. Forçar os cavalos')
@@ -619,4 +619,19 @@ def main():
         elif Personagem.Popularidade <= RebeliãoChance:
             console.print('Apesar da humilhação sofrida por sua ordem, o objetivo da corrida é cumprido e a população comemora junto com seu oponente a vitória, acalmando qualquer ânimo de rebelião.')
             fim_do_jogo()
-main()
+
+#Verifica erros e inicia o jogo.
+def start() :
+    try: 
+        main()
+    except Exception as erro:
+        print('')
+        print('Erro:')
+        print (erro)
+        print('')
+        console.print('Oh não, um erro. Você provavelmente digitou algo que não era um número quando dado uma escolha ou um número diferente dos que apareceram.')
+        console.print('O jogo será reiniciado após você apertar enter. Caso você acredite que o problema é outro, entre em contato: workingsea@protonmail.com')
+        input('')
+        start()
+        
+start()
