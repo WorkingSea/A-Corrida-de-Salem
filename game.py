@@ -379,12 +379,12 @@ def fim_do_jogo():
     #Ama lain    
     else:
         string='VAMOS TODOS AMAR LAIN '
-        for i in range(1000):
+        for i in range(20):
             print(string)
             string = string + string  
             time.sleep(0.5)
-        print('Feliz aniversário.')
-        input('')    
+        input('Feliz aniversário.')
+        fim_do_jogo()
 
 #Dado a ser rolado
 def dado(lados):
